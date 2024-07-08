@@ -1,0 +1,42 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.nav a{
+    text-shadow: 2px 2px 3px rgb(0, 0, 0);
+}
+
+.banner_text {
+    text-shadow: 2px 2px 8px rgb(0, 0, 0);
+}
+
+.consent-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.consent-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  margin-left: 1em;
+}
+
+.consent-button:hover {
+  background-color: #45a049;
+}
