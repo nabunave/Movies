@@ -3,36 +3,90 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="./assets/images/Moviestack_favicon.png">
+    <link
+      rel="icon"
+      type="image/png"
+      href="./assets/images/Moviestack_favicon.png"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css" />
     <title>Moviestack</title>
   </head>
 
   <body class="bg-gray-900 text-white font-sans flex flex-col pos">
     <header>
-        <nav class="nav flex justify-between items-center px-7 font-bold mt-10 bg-gray-800 border-2 border-gray-600">
-            <h1 class="flex flex-row items-center text-2xl">
-                <img src="./assets/images/Moviestack_isotipo.png" alt="Moviestack_logo" class="logo w-[80px]"> MOVIESTACK
-            </h1>
-            <section class="nav_links flex gap-9 text-lg items-center">
-            <a href="#" class="current text-[#6D38E0] shadow-lg">HOME</a>
-            <a href="./pages/movies.html" class="hover:text-blue-500 transition duration-300 ease-in-out">MOVIES</a>
-            <a href="#" class="hover:text-blue-500 transition duration-300 ease-in-out">FAVS</a>
+      <nav
+        class="nav flex justify-between items-center px-7 font-bold mt-10 bg-gray-800 border-2 border-gray-600">
+        <!-- "nav flex justify-between items-center px-7 font-bold mt-10 bg-gray-800 border-2 border-gray-600" -->
+      
+        <h1 class="flex items-center text-2xl">
+          <img
+            src="./assets/images/Moviestack_isotipo.png"
+            alt="Moviestack_logo"
+            class="logo w-[80px]"
+          />
+          MOVIESTACK
+        </h1>
+        <section class="nav_links flex flex-col text-lg items-center sm:flex-row sm:gap-9">
+          <a href="#" class="current text-[#6D38E0] shadow-lg">HOME</a>
+          <a
+            href="./pages/movies.html"
+            class="hover:text-blue-500 transition duration-300 ease-in-out"
+            >MOVIES</a
+          >
+          <a
+            href="#"
+            class="hover:text-blue-500 transition duration-300 ease-in-out"
+            >FAVS</a
+          >
         </section>
-        </nav>
+      </nav>
     </header>
 
     <main class="bg-gradient-to-b from-[#091523] to-[#296cb8]">
-        <div class="banner ">
-            <img src="./assets/images/intro-1680555869.webp" alt="Moviestack_banner" class="banner_img w-full h-[300px] object-cover mt-2">
-            <p class="banner_text text-2xl text-justify mt-2 p-5">Welcome to Moviestack! Your ultimate destination for discovering, exploring, and enjoying the best movies of all time. Dive into a vast catalog that spans from timeless classics to the latest box office hits. With personalized recommendations, expert reviews, and the ability to create your own favorites list, CineMania transforms your cinematic experience into something unique and exciting. Join our community and let every night be an unforgettable movie night!</p>
-        </div>
-        <div class="container flex flex-row items-center flex-wrap gap-5 justify-around m-10">
-            <p class="banner_text text-center mt-2 p-5 text-3xl w-[100%]">Explore our extensive collection of movies, from timeless classics to the latest blockbusters. Find your next favorite film and enjoy a world of cinema at your fingertips.</p>
-            <a href="../pages/movies.html" class="banner_img flex items-center flex-col"><img class="shadow-lg" src="./assets/images/Sin título.jpg" alt="Moviestack_logo" class=rounded-lg>EXPLORE MOVIES</a>
-            <a href=# class="banner_img flex items-center flex-col"><img class="shadow-lg" src="./assets/images/favs.jpg" alt="Moviestack_logo" class="rounded-lg">EXPLORE FAVS</a>
-        </div>
+      <div class="banner">
+        <img
+          src="./assets/images/intro-1680555869.webp"
+          alt="Moviestack_banner"
+          class="banner_img w-full h-[300px] object-cover mt-2"
+        />
+        <p class="banner_text text-2xl text-justify mt-2 p-5">
+          Welcome to Moviestack! Your ultimate destination for discovering,
+          exploring, and enjoying the best movies of all time. Dive into a vast
+          catalog that spans from timeless classics to the latest box office
+          hits. With personalized recommendations, expert reviews, and the
+          ability to create your own favorites list, CineMania transforms your
+          cinematic experience into something unique and exciting. Join our
+          community and let every night be an unforgettable movie night!
+        </p>
+      </div>
+      <div
+        class="container flex flex-row items-center flex-wrap gap-5 justify-around w-2/3 m-auto"
+      >
+        <p class="banner_text w-full text-center mt-2 p-5 text-3xl">
+          Explore our extensive collection of movies, from timeless classics to
+          the latest blockbusters. Find your next favorite film and enjoy a
+          world of cinema at your fingertips.
+        </p>
+        <a
+          href="../pages/movies.html"
+          class="banner_img flex items-center flex-col"
+          ><img
+            class="shadow-lg rounded-lg w-[300px] h-[200px] object-cover"
+            src="./assets/images/Sin título.jpg"
+            alt="Moviestack_logo"
+            class="rounded-lg"
+          />EXPLORE MOVIES</a
+        >
+        <a href="#" class="banner_img flex items-center flex-col"
+          ><img
+            class="shadow-lg rounded-lg w-[300px] h-[200px] object-cover"
+            src="./assets/images/favs.jpg"
+            alt="Moviestack_logo"
+            class="rounded-lg"
+          />EXPLORE FAVS</a
+        >
+      </div>
     </main>
 
     <!-- <div id="cky-consent-bar" class="consent-bar">
@@ -40,8 +94,10 @@
       <button id="accept-cookies" class="consent-button">Aceptar</button>
     </div> -->
 
-    <footer class="flex justify-center px-7 font-bold bg-gray-800 border-2 border-gray-600">
-        <p>MindHub - Cohort N°0055</p>
+    <footer
+      class="flex justify-center px-7 font-bold bg-gray-800 border-2 border-gray-600"
+    >
+      <p>MindHub - Cohort N°0055</p>
     </footer>
     <script src="./scripts/Moviestack_data.js"></script>
     <script src="./scripts/index.js"></script>
