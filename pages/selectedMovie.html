@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="../assets/images/Moviestack_favicon.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <title>Moviestack</title>
+</head>
+
+<body class="bg-gray-900 text-white font-sans flex flex-col pos">
+    <header>
+        <nav class="nav flex justify-between items-center px-7 font-bold mt-10 bg-gray-800 border-2 border-gray-600">
+            <h1 class="flex flex-row items-center text-2xl">
+                <img src="../assets/images/Moviestack_isotipo.png" alt="Moviestack_logo" class="logo w-[80px]" />
+                MOVIESTACK
+            </h1>
+            <section class="nav_links flex flex-col text-lg items-center sm:flex-row sm:gap-9">
+                <a href="../index.html" class="hover:text-blue-500 transition duration-300 ease-in-out">HOME</a>
+                <a href="../pages/movies.html"
+                    class="hover:text-blue-500 transition duration-300 ease-in-out">MOVIES</a>
+                <a href="../index.html" class="hover:text-blue-500 transition duration-300 ease-in-out">FAVS</a>
+            </section>
+        </nav>
+    </header>
+
+    <main class="bg-gradient-to-b from-[#091523] to-[#296cb8]">
+        <div class="banner">
+            <img src="../assets/images/movie.jpg" alt="Moviestack_banner"
+                class="banner_img w-full h-[300px] object-cover mt-2" />
+        </div>
+
+        <section class="selectedMovie grid grid-cols-2 gap-4 justify-items-center">
+
+            <div class="containerImg gap-5 mt-10 bg-gray-800 w-[45vw] h-[50vh]">
+
+            </div>
+
+            <div class="containerInfo flex flex-col justify-around gap-5 mt-10 bg-gray-800 w-[45vw] h-[50vh] p-5">
+
+            </div>
+
+            <div class="table4 flex justify-center flex-wrap gap-5 mb-10 bg-gray-800 w-[45vw] h-[50vh] p-5">
+                
+            </div>
+
+            <div class="table3 flex justify-center flex-wrap gap-5 mb-10 bg-gray-800 w-[45vw] h-[50vh] p-5">
+                
+            </div>
+        </section>
+    </main>
+
+    <footer class="flex justify-center px-7 font-bold bg-gray-800 border-2 border-gray-600">
+        <p>MindHub - Cohort N°0055</p>
+    </footer>
+    <script src="../scripts/Moviestack_data.js"></script>
+    <script src="../scripts/selectedMovie.js"></script>
+
+</body>
+
+</html>

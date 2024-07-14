@@ -1,15 +1,14 @@
-if (window.location.pathname === '/pages/movies.html') {
+if (window.location.pathname === '/pages/movies.html') {//si la ruta actual es movies.html se cargan las tarjetas
 
-    let contenedor = document.getElementById('contenedor')
+    let contenedor = document.querySelector('.contenedor')
     let selectGenre = document.getElementById('genreSelect')
     let searchInput = document.getElementById('searchInput');
-    console.log(selectGenre)
 
     const card = (movie) => {
         return `
         <div class="card bg-gray-500 text-white p-4 m-4 w-[300px] text-center rounded-xl sm:bg-gray-700">
         <h3 class="text-lg font-bold">${movie.title}</h3>
-        <img src="${movie.image}" alt="${movie.title}" class="mt-7 hover:scale-125 transition duration-700 ease-linear hover:rounded-xl">
+        <a href="./selectedMovie.html?id=${movie.id}"><img src="${movie.image}" alt="${movie.title}" class="mt-7 hover:scale-125 transition duration-700 ease-linear hover:rounded-xl"></a>
         <p class="italic">${movie.tagline}</p><br>
         <p>${movie.overview}</p>
         </div>
@@ -24,22 +23,22 @@ if (window.location.pathname === '/pages/movies.html') {
     }
 
     const genres = (movies) => {
-        const uniqueGenres = []; // Array para almacenar géneros
-        movies.forEach(movie => {//recorrer movies por cada movie que tenga el array
-            movie.genres.forEach(genre => {//recorrer el genero de cada movie 
-                if (!uniqueGenres.includes(genre)) { // verificar si el género ya está en el array
-                    uniqueGenres.push(genre); // Si no está, agregarlo
-                }
-            });
-        });//ver otra opcion con set
-
+        // uniqueGenres = [] // Array para almacenar géneros
+        // movies.forEach(movie => {//recorrer movies por cada movie que tenga el array
+        //     movie.genres.forEach(genre => {//recorrer el genero de cada movie 
+        //         if (!uniqueGenres.includes(genre)) { // verificar si el género ya está en el array
+        //             uniqueGenres.push(genre); // Si no está, agregarlo
+        //         }
+        //     });
+        // });
+        
+        const uniqueGenres = [...new Set(movies.flatMap(movie => movie.genres))].toSorted();
         let htmlGenres = `<option value="All">All Genres</option>`;
         uniqueGenres.forEach(genre => {
             htmlGenres += `<option value="${genre}">${genre}</option>`;
         });
 
-        uniqueGenres.sort(); // Ordenar alfabéticamente
-        selectGenre.innerHTML = htmlGenres;
+        selectGenre.innerHTML = htmlGenres;//se agrega el select con los generos que ya existen
 
         const filterMovies = () => {
             const searchText = searchInput.value.toLowerCase();
@@ -70,6 +69,15 @@ if (window.location.pathname === '/pages/movies.html') {
 
         objMovies(movies)
     };
+    
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {//añade un event listener a cada tarjeta
+            const movieId = card.getAttribute('data-id');//obtiene el id de la tarjeta y lo almacena en movieId para usarlo en la url, data es una caracteristica html
+            window.location.href = `./selectedMovie.html?id=${movieId}`;//Redirige al usuario añadiendo el id de la pelicula
+        });
+    });
+
+
 
     genres(movies)
     objMovies(movies)//cargar todas las tarjetas al cargar la pagina
