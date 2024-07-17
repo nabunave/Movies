@@ -58,7 +58,7 @@ if (window.location.pathname === '/pages/movies.html') {//si la ruta actual es m
 
         // Añado un event listener para capturar el valor seleccionado
         selectGenre.addEventListener('change', () => {//change es cuando se cambia el valor en el select
-            searchInput.value = '';//limpiar el input de busqueda cuando se cambia de genero
+           // searchInput.value = '';//limpiar el input de busqueda cuando se cambia de genero
             filterMovies();//
 
             // objMovies(movies.filter(movie => movie.genres.includes(selectedGenre)));

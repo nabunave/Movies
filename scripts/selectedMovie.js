@@ -1,9 +1,9 @@
 //document.addEventListener('DOMContentLoaded', () => {//al cargar la pagina se cargan las tarjetas de la pagina y se cargan los datos de la tarjeta
 
-    const params = new URLSearchParams(window.location.search);//obtiene los datos de la url
-    console.log(params);
-    const movieId = params.get('id');
-    console.log(movieId);
+const params = new URLSearchParams(window.location.search);//obtiene los datos de la url
+console.log(params);
+const movieId = params.get('id');
+console.log(movieId);
 
 
 //     window.location es un objeto que contiene información sobre la URL actual del documento.
@@ -11,21 +11,21 @@
 
 
 
-    const movie = movies.find(movie => movie.id === movieId);//busca la pelicula que coincida con el id de la url y la retorna en movie para usarla en el html
+const movie = movies.find(movie => movie.id === movieId);//busca la pelicula que coincida con el id de la url y la retorna en movie para usarla en el html
 
-        const data = () => {
-            document.querySelector('.containerImg').innerHTML = `
+const data = () => {
+    document.querySelector('.containerImg').innerHTML = `
         <img src="${movie.image}" alt="${movie.title}" class="w-full h-full object-cover p-5"/>
         `
 
-            document.querySelector('.containerInfo').innerHTML = `
+    document.querySelector('.containerInfo').innerHTML = `
         <h3 class="text-xl font-bold">${movie.title}</h3>
         <p class="italic">${movie.tagline}</p>
         <p>${movie.genres}</p>
         <p>${movie.overview}</p>
         `
 
-            document.querySelector('.table4').innerHTML = `
+    document.querySelector('.table4').innerHTML = `
         <table class="table-auto w-full p-5">
             <tbody>
                 <tr>
@@ -48,7 +48,7 @@
         </table>
     `
 
-            document.querySelector('.table3').innerHTML = `
+    document.querySelector('.table3').innerHTML = `
         <table class="table-auto w-full">
             <tbody>
                 <tr>
@@ -67,7 +67,7 @@
         </table>
     `
 
-            return movieDetails;
-        };
+    return movieDetails;
+};
 
-        data(movie);
+data(movie);
