@@ -4,24 +4,63 @@ if (window.location.pathname === '/pages/movies.html') {//si la ruta actual es m
     let selectGenre = document.getElementById('genreSelect')
     let searchInput = document.getElementById('searchInput');
 
+    fetch('https://moviestack.onrender.com/api/movies', {
+        headers: {
+            "x-api-key": "0ff70d54-dc0b-4262-9c3d-776cb0f34dbd"
+        }
+    })
+        .then(response => response.json())
+        .then(data => {
+            const favoriteMovies = JSON.parse(localStorage.getItem('favorite')) || [];
+            data.movies.forEach(movie => {
+                if (favoriteMovies.some(fav => fav.id === movie.id)) {
+                    movie.isFavorite = true;
+                }
+            });
+            displayMovies(data.movies);
+            genres(data.movies);
+        })
+        .catch(error => console.error('Error fetching movies:', error));
+
     const card = (movie) => {
         return `
-        <div class="card bg-gray-500 text-white p-4 m-4 w-[300px] text-center rounded-xl sm:bg-gray-700">
-        <h3 class="text-lg font-bold">${movie.title}</h3>
-        <a href="./selectedMovie.html?id=${movie.id}"><img src="${movie.image}" alt="${movie.title}" class="mt-7 hover:scale-125 transition duration-700 ease-linear hover:rounded-xl"></a>
+        <div class="card bg-gray-500 text-white p-4 m-4 w-[300px] text-center rounded-xl sm:bg-gray-700" data-id="${movie.id}">
+        <h3 class="text-lg font-bold flex justify-around">${movie.title}<button class="favorite-button"><i class="fa-solid fa-heart text-3xl" style="color: ${movie.isFavorite ? '#ff0000' : '#ffffff'};"></i></button></h3>
+        <a href="./selectedMovie.html?id=${movie.id}"><img src="https://moviestack.onrender.com/static/${movie.image}" alt="${movie.title}" class="mt-7 hover:scale-125 transition duration-700 ease-linear hover:rounded-xl"></a>
         <p class="italic">${movie.tagline}</p><br>
-        <p>${movie.overview}</p>
+        <p class="text-justify">${movie.overview}</p><br>
         </div>
         `
     }
 
-    const objMovies = (cb_movies) => {
+    const displayMovies = (allMovies) => {
         let htmlCards = ''
-        cb_movies.forEach(movie => htmlCards += card(movie))
+        allMovies.forEach(movie => htmlCards += card(movie));
         contenedor.innerHTML = htmlCards
-        //cb_movies.forEach(movie => contenedor.innerHTML += card(movie)) esta forma seria mala porque cargaria cada tarjeta por separado 
+
+        const favoriteButtons = contenedor.querySelectorAll('.favorite-button');
+        favoriteButtons.forEach((favoriteButton, index) => {//recorre cada botón y añade un event listener a cada uno. index es el índice del botón actual en la lista de favoriteButtons, coincide con el índice de la película correspondiente en allMovies
+            favoriteButton.addEventListener('click', () => toggleFavorite(allMovies[index], favoriteButton));
+        });
     }
 
+    const toggleFavorite = (movie, button) => {
+        const favoriteMovies = JSON.parse(localStorage.getItem('favorite')) || [];
+        const index = favoriteMovies.findIndex(fav => fav.id === movie.id);
+        
+        // Alternar el estado de favorito
+        if (index !== -1) {
+            favoriteMovies.splice(index, 1);
+            button.querySelector('i').style.color = '#ffffff';
+        } else {
+            favoriteMovies.push(movie);
+            button.querySelector('i').style.color = '#ff0000';
+        }
+    
+        // Guardar la lista actualizada de favoritos en localStorage
+        localStorage.setItem('favorite', JSON.stringify(favoriteMovies));
+    }
+    
     const genres = (movies) => {
         // uniqueGenres = [] // Array para almacenar géneros
         // movies.forEach(movie => {//recorrer movies por cada movie que tenga el array
@@ -31,7 +70,7 @@ if (window.location.pathname === '/pages/movies.html') {//si la ruta actual es m
         //         }
         //     });
         // });
-        
+
         const uniqueGenres = [...new Set(movies.flatMap(movie => movie.genres))].toSorted();
         let htmlGenres = `<option value="All">All Genres</option>`;
         uniqueGenres.forEach(genre => {
@@ -53,12 +92,12 @@ if (window.location.pathname === '/pages/movies.html') {//si la ruta actual es m
                 filteredMovies = filteredMovies.filter(movie => movie.title.toLowerCase().includes(searchText));
             }
 
-            objMovies(filteredMovies);
+            displayMovies(filteredMovies);
         };
 
         // Añado un event listener para capturar el valor seleccionado
         selectGenre.addEventListener('change', () => {//change es cuando se cambia el valor en el select
-           // searchInput.value = '';//limpiar el input de busqueda cuando se cambia de genero
+            // searchInput.value = '';//limpiar el input de busqueda cuando se cambia de genero
             filterMovies();//
 
             // objMovies(movies.filter(movie => movie.genres.includes(selectedGenre)));
@@ -67,20 +106,15 @@ if (window.location.pathname === '/pages/movies.html') {//si la ruta actual es m
 
         searchInput.addEventListener('input', filterMovies)//los argumentos son la funcion que se va a ejecutar cuando se escriba en el input de busqueda
 
-        objMovies(movies)
+        displayMovies(movies)
     };
-    
+
     document.querySelectorAll('.card').forEach(card => {
         card.addEventListener('click', () => {//añade un event listener a cada tarjeta
             const movieId = card.getAttribute('data-id');//obtiene el id de la tarjeta y lo almacena en movieId para usarlo en la url, data es una caracteristica html
             window.location.href = `./selectedMovie.html?id=${movieId}`;//Redirige al usuario añadiendo el id de la pelicula
         });
     });
-
-
-
-    genres(movies)
-    objMovies(movies)//cargar todas las tarjetas al cargar la pagina
 }
 
 
@@ -96,7 +130,7 @@ if (window.location.pathname === '/pages/movies.html') {//si la ruta actual es m
 
 //     // Comprobar si el consentimiento ya ha sido dado
 //     if (!localStorage.getItem('cookiesAccepted')) {
-//         consentBar.style.display = 'flex'; 
+//         consentBar.style.display = 'flex';
 //     }
 
 //     acceptButton.addEventListener('click', () => {
